@@ -88,6 +88,30 @@ fos_user:
 
 
 easy_admin:
+    site_name: 'Smart Reporting'
+    formats:
+      date: 'd.m.Y'
+    design:
+      color_scheme: 'light'
     entities:
-        - AppBundle\Entity\User
-        - AppBundle\Entity\Task
+      User:
+        class: AppBundle\Entity\User
+        list:
+          fields: ['username', 'email', {property: 'enabled', label: 'Aktiviert'}, {property: 'lastLogin', label: 'Letzte Anmeldung'}]
+        edit:
+          fields: ['username', 'email', 'enabled', 'roles']
+        new:
+          fields:
+              - { property: 'username' }
+              - { property: 'email', type: 'email'}
+              - { property: 'plainPassword', type: 'password', label: 'Passwort' }
+              - { property: 'enabled', label: 'Aktiviert'}
+      Task:
+        class: AppBundle\Entity\Task
+        label: 'Aufgaben'
+        list:
+          fields: ['name', {property: 'due_date', label: 'Fälligkeitsdatum'}, {property: 'description', label: 'Beschreibung'}, {property: 'assignee', label: 'Beauftragter/in'}]
+        edit:
+          fields: ['name', {property: 'due_date', label: 'Fälligkeitsdatum'}, {property: 'description', label: 'Beschreibung'}, {property: 'assignee', label: 'Beauftragter/in'}]
+        new:
+          fields: ['name', {property: 'due_date', label: 'Fälligkeitsdatum'}, {property: 'description', label: 'Beschreibung'}, {property: 'assignee', label: 'Beauftragter/in'}]

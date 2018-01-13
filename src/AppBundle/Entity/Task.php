@@ -26,7 +26,7 @@ class Task
     /**
      * @return mixed
      */
-    public function getAssignee() : User
+    public function getAssignee()
     {
         return $this->assignee;
     }
